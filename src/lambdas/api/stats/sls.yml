@@ -1,0 +1,22 @@
+GetStats:
+  handler: src/lambdas/api/stats/get.handler
+  layers:
+    - Ref: NodeModulesLambdaLayer
+  package:
+    include:
+      - src/lambdas/api/stats/handler.js
+  events:
+    - http:
+        path: /stats
+        method: get
+        cors:
+          origin: '*'
+          headers:
+            - Content-Type
+            - Authorization
+            - If-None-Match
+            - If-Modified-Since
+            - X-Amz-Date
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent

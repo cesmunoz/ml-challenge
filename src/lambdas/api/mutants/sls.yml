@@ -1,0 +1,22 @@
+PostMutant:
+  handler: src/lambdas/api/mutants/post.handler
+  layers:
+    - Ref: NodeModulesLambdaLayer
+  package:
+    include:
+      - src/lambdas/api/mutants/handler.js
+  events:
+    - http:
+        path: /mutants
+        method: post
+        cors:
+          origin: '*'
+          headers:
+            - Content-Type
+            - Authorization
+            - If-None-Match
+            - If-Modified-Since
+            - X-Amz-Date
+            - X-Api-Key
+            - X-Amz-Security-Token
+            - X-Amz-User-Agent

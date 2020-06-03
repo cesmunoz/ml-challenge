@@ -1,0 +1,46 @@
+service: ml-challenge
+
+plugins:
+  - serverless-dynamodb-local
+  - serverless-deployment-bucket
+  - serverless-bundle
+  - serverless-offline
+
+custom:
+  deploymentBucket:
+    versioning: true
+  dynamodb:
+    stages:
+      - dev
+    image: 'amazon/dynamodb-local'
+    ports:
+      - '8000:8000'
+    noStart: true,
+    migrate: true,
+    command: ['-jar', 'DynamoDBLocal.jar', '-sharedDb', '-inMemory']
+  serverless-offline:
+    port: 3000
+
+package:
+  individually: true
+  excludeDevDependencies: false
+  exclude:
+    - ./**
+  include:
+    - src/shared/**/*.js
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-west-2
+  stage: ${opt:stage, 'dev'}
+  deploymentBucket:
+    name: ml-challenge-deployment-bucket
+    serverSideEncryption: AES256
+
+resources:
+  - ${file(./src/resources/dynamodb.yml)}
+
+functions:
+  - ${file(./src/lambdas/api/mutants/sls.yml)}
+  - ${file(./src/lambdas/api/stats/sls.yml)}
