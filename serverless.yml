@@ -12,12 +12,11 @@ custom:
   dynamodb:
     stages:
       - dev
-    image: 'amazon/dynamodb-local'
-    ports:
-      - '8000:8000'
-    noStart: true,
-    migrate: true,
-    command: ['-jar', 'DynamoDBLocal.jar', '-sharedDb', '-inMemory']
+    start:
+      host: ml-challenge_dynamodb_1
+      port: '8000'
+      noStart: true
+      migrate: true
   serverless-offline:
     port: 3000
 
@@ -37,6 +36,8 @@ provider:
   deploymentBucket:
     name: ml-challenge-deployment-bucket
     serverSideEncryption: AES256
+  environment:
+    ENV: '${opt:stage, }'
 
 resources:
   - ${file(./src/resources/dynamodb.yml)}
