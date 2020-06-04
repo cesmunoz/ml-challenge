@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cross-env SLS_DEBUG=* && serverless offline",
+    "start": "cross-env SLS_DEBUG=* && serverless offline --stage dev",
     "format": "prettier --write \"src/**/*.js\"",
     "lint": "eslint --ext .js ./src/**/*.js"
   },
@@ -23,7 +23,7 @@
     "serverless": "^1.71.3",
     "serverless-bundle": "^1.7.0",
     "serverless-deployment-bucket": "^1.1.2",
-    "serverless-offline": "^6.3.0"
+    "serverless-offline": "^6.3.1"
   },
   "dependencies": {
     "serverless-dynamodb-local": "^0.2.39",

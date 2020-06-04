@@ -6,7 +6,8 @@ export const DECREASE = -1;
 export const NO_INCREMENT = 0;
 export const VALID_DNA_LETTERS = ['A', 'T', 'G', 'C'];
 
-export const HUMANS = 'HUMANS';
-export const MUTANTS = 'MUTANTS';
+export const HUMAN = 'HUMAN';
+export const MUTANT = 'MUTANT';
 
+export const METADATA = 'metadata';
 export const REVERSE_INDEX = 'reverseIndex';

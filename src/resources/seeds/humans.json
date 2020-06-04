@@ -1,0 +1,10 @@
+[
+  {
+    "PK": "metadata#1",
+    "SK": "#HUMAN#"
+  },
+  {
+    "PK": "metadata#2",
+    "SK": "#MUTANT#"
+  }
+]

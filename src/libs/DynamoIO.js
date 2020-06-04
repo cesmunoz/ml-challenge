@@ -15,14 +15,8 @@ if (process.env.ENV === 'dev') {
 
 const getQueryResult = async params => dynamo.query(params).promise();
 export const query = async (tableName, filter) => {
-  const params = {
-    TableName: tableName,
-    Item: item,
-    ConditionExpression: 'attribute_not_exists(PK) AND attribute_not_exists(SK)',
-    ReturnValues: 'ALL_OLD',
-  };
-  const result = await getQueryResult(params);
-  return result ? result.Items : [];
+  filter.TableName = tableName;
+  return await getQueryResult(filter);
 };
 
 const getPutResult = async params => dynamo.put(params).promise();
@@ -33,7 +27,6 @@ export const insert = async (tableName, item) => {
     ConditionExpression: 'attribute_not_exists(PK) AND attribute_not_exists(SK)',
     ReturnValues: 'ALL_OLD',
   };
-
   await getPutResult(params);
   return params ? params.Item : {};
 };

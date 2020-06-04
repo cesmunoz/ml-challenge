@@ -1,5 +1,5 @@
 import * as DynamoIO from '../../libs/DynamoIO';
-import { REVERSE_INDEX, HUMANS } from '../constants';
+import { REVERSE_INDEX, HUMAN, MUTANT, METADATA } from '../constants';
 
 const TableName = 'HUMANS';
 
@@ -9,8 +9,8 @@ class HumanService {
       IndexName: REVERSE_INDEX,
       KeyConditionExpression: 'SK = :sk and begins_with(PK, :pk)',
       ExpressionAttributeValues: {
-        ':pk': `metadata#`,
-        ':sk': `#${HUMANS}`,
+        ':pk': `${METADATA}#`,
+        ':sk': `#${HUMAN}#`,
       },
     };
 
@@ -18,8 +18,8 @@ class HumanService {
       IndexName: REVERSE_INDEX,
       KeyConditionExpression: 'SK = :sk and begins_with(PK, :pk)',
       ExpressionAttributeValues: {
-        ':pk': `metadata#`,
-        ':sk': `#${HUMANS}`,
+        ':pk': `${METADATA}#`,
+        ':sk': `#${MUTANT}#`,
       },
     };
 
@@ -38,6 +38,9 @@ class HumanService {
     model.createdDate = Date.now();
 
     DynamoIO.insert(TableName, model);
+
+    delete model.PK;
+    delete model.SK;
   }
 }
 
