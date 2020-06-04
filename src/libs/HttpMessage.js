@@ -1,4 +1,4 @@
-import { SUCCESS, BAD_REQUEST, ERROR } from './HttpStatusCodes';
+import { SUCCESS, BAD_REQUEST, ERROR, FORBIDDEN } from './HttpStatusCodes';
 
 export const response = (statusCode, message, data) => {
   return {
@@ -8,5 +8,6 @@ export const response = (statusCode, message, data) => {
 };
 
 export const success = (message, data) => response(SUCCESS, message, data);
+export const forbidden = (message, data) => response(FORBIDDEN, message, data);
 export const badRequest = (message, data) => response(BAD_REQUEST, message, data);
 export const error = ex => response(ERROR, ex);

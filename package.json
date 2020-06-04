@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "cross-env SLS_DEBUG=* && serverless offline --stage dev",
     "format": "prettier --write \"src/**/*.js\"",
     "lint": "eslint --ext .js ./src/**/*.js"
@@ -13,6 +13,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.10.1",
+    "@babel/plugin-transform-runtime": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "cross-env": "^7.0.2",
     "eslint": "^7.1.0",
     "eslint-config-prettier": "^6.11.0",

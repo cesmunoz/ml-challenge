@@ -37,7 +37,7 @@ provider:
     name: ml-challenge-deployment-bucket
     serverSideEncryption: AES256
   environment:
-    ENV: '${opt:stage, }'
+    ENV: '${opt:stage}'
 
 resources:
   - ${file(./src/resources/dynamodb.yml)}
