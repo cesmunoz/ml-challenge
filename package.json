@@ -7,7 +7,8 @@
     "test": "jest",
     "start": "cross-env SLS_DEBUG=* && serverless offline --stage dev",
     "format": "prettier --write \"src/**/*.js\"",
-    "lint": "eslint --ext .js ./src/**/*.js"
+    "lint": "eslint --ext .js ./src/**/*.js",
+    "deploy": "serverless deploy --stage prod"
   },
   "keywords": [],
   "author": "",

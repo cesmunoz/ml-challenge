@@ -2,3 +2,4 @@
 node_modules
 .dynamodb
 dynamodb
+.serverless

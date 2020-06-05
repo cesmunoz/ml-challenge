@@ -32,12 +32,12 @@ class HumanService {
     };
   }
 
-  static save(model) {
+  static async save(model) {
     model.PK = `metadata#${model.id}`;
     model.SK = `#${model.dna_type}#`;
     model.createdDate = Date.now();
 
-    DynamoIO.insert(TableName, model);
+    await DynamoIO.insert(TableName, model);
 
     delete model.PK;
     delete model.SK;

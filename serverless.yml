@@ -36,6 +36,13 @@ provider:
   deploymentBucket:
     name: ml-challenge-deployment-bucket
     serverSideEncryption: AES256
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - dynamodb:Query
+        - dynamodb:PutItem
+      Resource:
+        - '*'
   environment:
     ENV: '${opt:stage}'
 

@@ -16,7 +16,7 @@ export const handler = async event => {
     }
 
     const model = { dna_type: response.mutant ? MUTANT : HUMAN, id: uuidv4() };
-    HumanService.save(model);
+    await HumanService.save(model);
 
     if (!response.mutant) {
       return forbidden('The human is not a mutant', model);

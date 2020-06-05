@@ -1,7 +1,5 @@
 PostMutant:
   handler: src/lambdas/api/mutants/post.handler
-  layers:
-    - Ref: NodeModulesLambdaLayer
   package:
     include:
       - src/lambdas/api/mutants/handler.js
