@@ -1,7 +1,5 @@
 GetStats:
   handler: src/lambdas/api/stats/get.handler
-  layers:
-    - Ref: NodeModulesLambdaLayer
   package:
     include:
       - src/lambdas/api/stats/handler.js
