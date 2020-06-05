@@ -27,8 +27,9 @@ class HumanService {
     const mutants = await DynamoIO.query(TableName, filterMutants);
 
     return {
-      humans: humans.Count,
-      mutants: mutants.Count,
+      count_human_dna: humans.Count,
+      count_mutant_dna: mutants.Count,
+      ratio: mutants.Count / humans.Count,
     };
   }
 
