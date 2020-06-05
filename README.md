@@ -19,8 +19,8 @@ This is the challenge project for ml
 - [Observations](#observations)
 
 **Technology Stack**  
-**_Back-End_**: Node, Serverless, Jest, Docker
-**_Infrastructure in AWS_**: Lambdas, CloudFormation, S3, Dynamo
+**_Back-End_**: Node, Serverless, Jest, Docker.   
+**_Infrastructure in AWS_**: Lambdas, CloudFormation, S3, Dynamo.   
 
 ## Setup
 
@@ -126,7 +126,7 @@ github).
 Si bien dije que fue una estimacion fue dos semanas, esto lo arranque el domingo 31/05.  
 Dejo aclarado un par de cosas que me hubiesen gustado cambiar en el challenge.  
   
-1. El acceso a dynamo. 
+1. El acceso a dynamo.   
    Si bien se puede acceder porque di permiso a todo (asignando \*) no es lo mejor. Lo ideal seria que haya exportado la tabla (Cloudformation export) y asignado en el recurso como ImportValue, por tema de tiempo y compromiso con la entrega del examen dejo esto mencionado.  
   
 2. Acceso a la base de datos.   
