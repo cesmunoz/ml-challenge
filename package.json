@@ -8,6 +8,7 @@
     "start": "cross-env SLS_DEBUG=* && serverless offline --stage dev",
     "format": "prettier --write \"src/**/*.js\"",
     "lint": "eslint --ext .js ./src/**/*.js",
+    "migrate": "node ./src/resources/migrate/index.js",
     "deploy": "serverless deploy --stage prod"
   },
   "keywords": [],

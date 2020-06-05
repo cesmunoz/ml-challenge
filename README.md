@@ -19,8 +19,8 @@ This is the challenge project for ml
 - [Observations](#observations)
 
 **Technology Stack**  
-**_Back-End_**: Node, Serverless, Jest, Docker.   
-**_Infrastructure in AWS_**: Lambdas, CloudFormation, S3, Dynamo.   
+**_Back-End_**: Node, Serverless, Jest, Docker.  
+**_Infrastructure in AWS_**: Lambdas, CloudFormation, S3, Dynamo.
 
 ## Setup
 
@@ -59,6 +59,7 @@ Run local database
 (The first time)
 
 > docker-compose up --build
+> npm run migrate
 
 (Each time you want to run locally dynamodb - Open in a different terminal. It needs to be open the connection)
 
@@ -72,8 +73,16 @@ Run api application
 
 # Urls
 
-POST - https://c9rrjugc89.execute-api.us-west-2.amazonaws.com/prod/mutants   
-GET - https://c9rrjugc89.execute-api.us-west-2.amazonaws.com/prod/stats   
+POST - https://mh1tszk5qe.execute-api.us-west-2.amazonaws.com/prod/mutants  
+GET - https://mh1tszk5qe.execute-api.us-west-2.amazonaws.com/prod/stats
+
+# Upload into aws
+
+configure aws with:
+(Need aws credentials)
+
+> aws configure
+> npm run deploy
 
 # Challenge
 
@@ -86,8 +95,8 @@ Para eso te ha pedido crear un programa con un método o función con la siguien
 En donde recibirás como parámetro un array de Strings que representan cada fila de una tabla de (NxN) con la secuencia del ADN. Las letras de los Strings solo pueden ser: (A,T,C,G), las cuales representa cada base nitrogenada del ADN.
 
 ```
-MUTANTE ['ATGCGA', 'CAGTGC', 'TTATGT', 'AGAAGG', 'CCCCTA', 'TCACTG'];  
-NO MUTANTE ['ATGCGA', 'ACCTGC', 'TAATGT', 'AGAAGG', 'TCCTTA', 'TCACTG'];  
+MUTANTE ['ATGCGA', 'CAGTGC', 'TTATGT', 'AGAAGG', 'CCCCTA', 'TCACTG'];
+NO MUTANTE ['ATGCGA', 'ACCTGC', 'TAATGT', 'AGAAGG', 'TCCTTA', 'TCACTG'];
 ```
 
 Sabrás si un humano es mutante, si encuentras ​más de una secuencia de cuatro letras
@@ -122,30 +131,30 @@ github).
 ● URLdelaAPI(Nivel2y3).
 
 # Observations
-  
+
 Si bien dije que fue una estimacion fue dos semanas, esto lo arranque el domingo 31/05.  
-Dejo aclarado un par de cosas que me hubiesen gustado cambiar en el challenge.  
-  
-1. El acceso a dynamo.   
-   Si bien se puede acceder porque di permiso a todo (asignando \*) no es lo mejor. Lo ideal seria que haya exportado la tabla (Cloudformation export) y asignado en el recurso como ImportValue, por tema de tiempo y compromiso con la entrega del examen dejo esto mencionado.  
-  
-2. Acceso a la base de datos.   
+Dejo aclarado un par de cosas que me hubiesen gustado cambiar en el challenge.
+
+1. El acceso a dynamo.  
+   Si bien se puede acceder porque di permiso a todo (asignando \*) no es lo mejor. Lo ideal seria que haya exportado la tabla (Cloudformation export) y asignado en el recurso como ImportValue, por tema de tiempo y compromiso con la entrega del examen dejo esto mencionado.
+
+2. Acceso a la base de datos.  
    Las lambdas hoy en dia estan escribiendo directamente a la base de datos. La consigna dice que puede tener mucho trafico, entonces podria haber agregado un sqs o kinesis entre el medio de la lambda y dynamo (Seria un sqs + una lambda que procese el topic correspondiente) para la escritura a la base de datos. De ese modo seria escalable.
-   Fui por lambdas porque se manejan muy bien para cuando se tiene que escalar y el costo es bajo.  
-  
-3. Dynamo Access Patterns.   
-   Quisiera dejar en claro los access patterns que elegi para que la app funcione.   
-  
-   Get Metadata for certain person.   
-   PK (PartitionKey): #METADATA#<id>.   
-   SK (Sort Key): #<HUMAN|MUTANT>#.   
-  
-   Get Total for each type   
-   SK: #<HUMAN|MUTANT>#.   
-   PK: #METADATA#<id>.   
-  
-   La busqueda de esta ultima seria de la siguiente manera:    
-   SK= #HUMAN# and begins_with(PK, #METADATA#).   
-    
+   Fui por lambdas porque se manejan muy bien para cuando se tiene que escalar y el costo es bajo.
+
+3. Dynamo Access Patterns.  
+   Quisiera dejar en claro los access patterns que elegi para que la app funcione.
+
+   Get Metadata for certain person.  
+   PK (PartitionKey): #METADATA#<id>.  
+   SK (Sort Key): #<HUMAN|MUTANT>#.
+
+   Get Total for each type  
+   SK: #<HUMAN|MUTANT>#.  
+   PK: #METADATA#<id>.
+
+   La busqueda de esta ultima seria de la siguiente manera:  
+   SK= #HUMAN# and begins_with(PK, #METADATA#).
+
 La tabla tiene una partition key (PK) y una sort key (SK)
 y como ya tengo ese "indice" cree un reverse index de manera tal de ya tener gratis el access pattern para obtener el total
