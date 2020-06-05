@@ -72,8 +72,8 @@ Run api application
 
 # Urls
 
-POST - https://c9rrjugc89.execute-api.us-west-2.amazonaws.com/prod/mutants
-GET - https://c9rrjugc89.execute-api.us-west-2.amazonaws.com/prod/stats
+POST - https://c9rrjugc89.execute-api.us-west-2.amazonaws.com/prod/mutants. 
+GET - https://c9rrjugc89.execute-api.us-west-2.amazonaws.com/prod/stats. 
 
 # Challenge
 
@@ -85,8 +85,8 @@ boolean isMutant(String[] dna); // Ejemplo Java
 
 En donde recibirás como parámetro un array de Strings que representan cada fila de una tabla de (NxN) con la secuencia del ADN. Las letras de los Strings solo pueden ser: (A,T,C,G), las cuales representa cada base nitrogenada del ADN.
 
-MUTANTE ['ATGCGA', 'CAGTGC', 'TTATGT', 'AGAAGG', 'CCCCTA', 'TCACTG'];
-NO MUTANTE ['ATGCGA', 'ACCTGC', 'TAATGT', 'AGAAGG', 'TCCTTA', 'TCACTG'];
+MUTANTE ['ATGCGA', 'CAGTGC', 'TTATGT', 'AGAAGG', 'CCCCTA', 'TCACTG'];  
+NO MUTANTE ['ATGCGA', 'ACCTGC', 'TAATGT', 'AGAAGG', 'TCCTTA', 'TCACTG'];  
 
 Sabrás si un humano es mutante, si encuentras ​más de una secuencia de cuatro letras
 iguales​, de forma oblicua, horizontal o vertical.
