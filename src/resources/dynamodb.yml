@@ -1,5 +1,5 @@
 Resources:
-  NotesTable:
+  Humans:
     Type: AWS::DynamoDB::Table
     Properties:
       TableName: 'HUMANS'
