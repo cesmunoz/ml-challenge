@@ -1,6 +1,6 @@
 import { handler } from '../get';
 import HumanService from '../../../../shared/services/humanService';
-import { SUCCESS } from '../../../../libs/HttpStatusCodes';
+import { SUCCESS, ERROR } from '../../../../libs/HttpStatusCodes';
 
 afterAll(() => {
   jest.restoreAllMocks();
@@ -16,5 +16,14 @@ describe('API Stats', () => {
 
     const response = await handler();
     expect(response.statusCode).toBe(SUCCESS);
+  });
+
+  test('should send a 500 if there is an error', async () => {
+    jest.spyOn(HumanService, 'getStats').mockImplementation(() => {
+      throw new Error('ERROR');
+    });
+
+    const response = await handler();
+    expect(response.statusCode).toBe(ERROR);
   });
 });

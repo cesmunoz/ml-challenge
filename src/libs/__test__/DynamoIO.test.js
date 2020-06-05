@@ -1,5 +1,5 @@
 import { DocumentClient } from 'aws-sdk/clients/dynamodb';
-import { query } from '../DynamoIO';
+import { query, insert } from '../DynamoIO';
 
 afterAll(() => {
   jest.restoreAllMocks();
@@ -7,6 +7,8 @@ afterAll(() => {
 
 describe('Lib DynamoDb', () => {
   beforeEach(() => {
+    // eslint-disable-next-line
+    process.env = Object.assign(process.env, { ENV: 'test' });
     jest.clearAllMocks();
   });
 
@@ -28,7 +30,7 @@ describe('Lib DynamoDb', () => {
       };
     });
 
-    const response = await query('THE_TABLE', {});
+    const response = await insert('THE_TABLE', {});
     expect(response).not.toBeNull();
   });
 });

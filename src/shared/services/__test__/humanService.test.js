@@ -20,7 +20,7 @@ describe('Services HumanService', () => {
   test('should successfully get stats', async () => {
     jest.spyOn(DynamoIO, 'query').mockImplementation(() => ({ Items: [], Count: 0 }));
 
-    const response = await HumanService.save({});
+    const response = await HumanService.getStats({});
     expect(response).not.toBeNull();
   });
 });

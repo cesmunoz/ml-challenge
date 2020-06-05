@@ -1,6 +1,6 @@
 import { handler } from '../post';
 import HumanService from '../../../../shared/services/humanService';
-import { FORBIDDEN, SUCCESS, BAD_REQUEST } from '../../../../libs/HttpStatusCodes';
+import { FORBIDDEN, SUCCESS, BAD_REQUEST, ERROR } from '../../../../libs/HttpStatusCodes';
 
 const badSizeMatrix = ['ATGCGA'];
 const badCharactersMatrix = ['ATGCGA', 'CAGTGC', 'XXXXXX', 'AGAAGG', 'CCCCTA', 'TCACTG'];
@@ -49,5 +49,15 @@ describe('API Mutants', () => {
     const event = buildEventRequest(mutantMatrix);
     const response = await handler(event);
     expect(response.statusCode).toBe(SUCCESS);
+  });
+
+  test('should send a 500 if there is an error', async () => {
+    jest.spyOn(HumanService, 'save').mockImplementation(() => {
+      throw new Error('ERROR');
+    });
+
+    const event = buildEventRequest(mutantMatrix);
+    const response = await handler(event);
+    expect(response.statusCode).toBe(ERROR);
   });
 });
