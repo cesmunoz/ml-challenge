@@ -120,30 +120,30 @@ github).
 ● URLdelaAPI(Nivel2y3).
 
 # Observations
-
-Si bien dije que fue una estimacion fue dos semanas, esto lo arranque el domingo 31/05.
-Dejo aclarado un par de cosas que me hubiesen gustado cambiar en el challenge.
-
-1. El acceso a dynamo
-   Si bien se puede acceder porque di permiso a todo (asignando \*) no es lo mejor. Lo ideal seria que haya exportado la tabla (Cloudformation export) y asignado en el recurso como ImportValue, por tema de tiempo y compromiso con la entrega del examen dejo esto mencionado.
-
-2. Acceso a la base de datos
+  
+Si bien dije que fue una estimacion fue dos semanas, esto lo arranque el domingo 31/05.  
+Dejo aclarado un par de cosas que me hubiesen gustado cambiar en el challenge.  
+  
+1. El acceso a dynamo. 
+   Si bien se puede acceder porque di permiso a todo (asignando \*) no es lo mejor. Lo ideal seria que haya exportado la tabla (Cloudformation export) y asignado en el recurso como ImportValue, por tema de tiempo y compromiso con la entrega del examen dejo esto mencionado.  
+  
+2. Acceso a la base de datos. 
    Las lambdas hoy en dia estan escribiendo directamente a la base de datos. La consigna dice que puede tener mucho trafico, entonces podria haber agregado un sqs o kinesis entre el medio de la lambda y dynamo (Seria un sqs + una lambda que procese el topic correspondiente) para la escritura a la base de datos. De ese modo seria escalable.
    Fui por lambdas porque se manejan muy bien para cuando se tiene que escalar y el costo es bajo.
-
-3. Dynamo Access Patterns
-   Quisiera dejar en claro los access patterns que elegi para que la app funcione
-
-   Get Metadata for certain person
-   PK (PartitionKey): #METADATA#<id>
-   SK (Sort Key): #<HUMAN|MUTANT>#
-
-   Get Total for each type
-   SK: #<HUMAN|MUTANT>#
-   PK: #METADATA#<id>
-
-   La busqueda de esta ultima seria de la siguiente manera:
-   SK= #HUMAN# and begins_with(PK, #METADATA#)
-
+  
+3. Dynamo Access Patterns. 
+   Quisiera dejar en claro los access patterns que elegi para que la app funcione. 
+  
+   Get Metadata for certain person. 
+   PK (PartitionKey): #METADATA#<id>. 
+   SK (Sort Key): #<HUMAN|MUTANT>#. 
+  
+   Get Total for each type 
+   SK: #<HUMAN|MUTANT>#. 
+   PK: #METADATA#<id>. 
+  
+   La busqueda de esta ultima seria de la siguiente manera:  
+   SK= #HUMAN# and begins_with(PK, #METADATA#). 
+  
 La tabla tiene una partition key (PK) y una sort key (SK)
 y como ya tengo ese "indice" cree un reverse index de manera tal de ya tener gratis el access pattern para obtener el total
