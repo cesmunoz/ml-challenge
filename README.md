@@ -158,3 +158,26 @@ Dejo aclarado un par de cosas que me hubiesen gustado cambiar en el challenge.
 
 La tabla tiene una partition key (PK) y una sort key (SK)
 y como ya tengo ese "indice" cree un reverse index de manera tal de ya tener gratis el access pattern para obtener el total
+
+# Code Coverage
+
+File                 | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+---------------------|---------|----------|---------|---------|-------------------
+All files            |   88.89 |    92.68 |   88.89 |   88.79 |                   
+ lambdas/api/mutants |   92.31 |      100 |     100 |   92.31 |                   
+  post.js            |   92.31 |      100 |     100 |   92.31 | 27                
+ lambdas/api/stats   |      80 |      100 |     100 |      80 |                   
+  get.js             |      80 |      100 |     100 |      80 | 9                 
+ libs                |   79.31 |       25 |   77.78 |   78.26 |                   
+  DynamoIO.js        |      60 |       25 |      50 |   61.54 | 6-8,24-31         
+  HttpMessage.js     |     100 |      100 |     100 |     100 |                   
+  HttpStatusCodes.js |     100 |      100 |     100 |     100 |                   
+ shared/constants    |     100 |      100 |     100 |     100 |                   
+  index.js           |     100 |      100 |     100 |     100 |                   
+ shared/models       |     100 |      100 |     100 |     100 |                   
+  humanModel.js      |     100 |      100 |     100 |     100 |                   
+ shared/services     |   91.23 |      100 |   92.86 |   90.57 |                   
+  dnaService.js      |     100 |      100 |     100 |     100 |                   
+  humanService.js    |   58.33 |      100 |      50 |   58.33 | 8-29              
+---------------------|---------|----------|---------|---------|-------------------
+
