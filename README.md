@@ -132,7 +132,7 @@ github).
 
 # Observations
 
-Si bien dije que fue una estimacion fue dos semanas, esto lo arranque el domingo 31/05.  
+Si bien dije que fue una estimacion fue dos semanas, esto lo arranque el domingo 31/05. La razon es que estaba en transicion de cambio de cliente y me iba a estar liberadndo recien despues 29/05.
 Dejo aclarado un par de cosas que me hubiesen gustado cambiar en el challenge.
 
 1. El acceso a dynamo.  
